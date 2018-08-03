@@ -694,8 +694,9 @@ void sqlcipher_exportFunc(sqlite3_context *context, int argc, sqlite3_value **ar
   saved_nTotalChange = db->nTotalChange;
   saved_xTrace = db->xTrace;
   saved_mTrace = db->mTrace;
-  db->flags |= SQLITE_WriteSchema | SQLITE_IgnoreChecks | SQLITE_PreferBuiltin;
+  db->flags |= SQLITE_WriteSchema | SQLITE_IgnoreChecks;
   db->flags &= ~(SQLITE_ForeignKeys | SQLITE_ReverseOrder);
+  db->mDbFlags |= DBFLAG_PreferBuiltin;
   db->xTrace = 0;
   db->mTrace = 0;
 
